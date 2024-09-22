@@ -42,6 +42,15 @@ https://stackoverflow.com/questions/36344194/pre-signed-url-for-multiple-files
 ## Option 2 - trusted bucket referencing other accounts 
 
 See bucket trusty in s3.tf
+Create a terraform.tfvars which similar to:
+
+````
+trusted_bucket_writers = [
+  "01323456789",
+  "98765432109"
+]
+````
+Run the apply again
 
 ````
 $ aws s3 ls s3://legendary-octo-journey-dev-trusty20240922123456789  
@@ -50,3 +59,5 @@ An error occurred (AccessDenied) when calling the ListObjectsV2 operation: Acces
 $ aws s3 cp README.md s3://legendary-octo-journey-dev-trusty20240922123456789/README.md
 upload: ./README.md to s3://legendary-octo-journey-dev-trusty20240922123456789/README.md
 ````
+
+## Option 3 - trusted bucket uses S3 access points.

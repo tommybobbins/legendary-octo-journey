@@ -14,4 +14,5 @@ variable "common_tags" {
 
 variable "trusted_bucket_writers" {
   type = list(string)
+  default = ["01234567890"]
 }
