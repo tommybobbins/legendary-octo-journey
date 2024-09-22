@@ -27,3 +27,26 @@ curl -X POST -F key='bobbins_was_here.txt' -F x-amz-algorithm='AWS4-HMAC-SHA256'
 
 Run the curl above and the file is uploaded
 
+https://stackoverflow.com/questions/36344194/pre-signed-url-for-multiple-files
+
+````
+    response = s3.generate_presigned_post(
+        "BUCKET_NAME",
+        "uploads/${filename}",
+        Fields=None,
+        Conditions=[["starts-with", "$key", "uploads/"]],
+        ExpiresIn=(10 * 60),
+    )
+````
+
+## Option 2 - trusted bucket referencing other accounts 
+
+See bucket trusty in s3.tf
+
+````
+$ aws s3 ls s3://legendary-octo-journey-dev-trusty20240922123456789  
+
+An error occurred (AccessDenied) when calling the ListObjectsV2 operation: Access Denied
+$ aws s3 cp README.md s3://legendary-octo-journey-dev-trusty20240922123456789/README.md
+upload: ./README.md to s3://legendary-octo-journey-dev-trusty20240922123456789/README.md
+````

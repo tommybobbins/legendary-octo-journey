@@ -11,3 +11,7 @@ variable "common_tags" {
     env       = "dev"
   }
 }
+
+variable "trusted_bucket_writers" {
+  type = list(string)
+}
