@@ -5,6 +5,7 @@ from botocore.exceptions import ClientError
 
 logger = logging.getLogger()
 logger.setLevel(logging.INFO)
+s3_client = boto3.client('s3')
 
 def create_presigned_url(event, context):
 
@@ -22,7 +23,6 @@ def create_presigned_url(event, context):
     print(f"Expiration = {expiration} ")
 
     # Generate a presigned URL for the S3 object
-    s3_client = boto3.client('s3')
     try:
         response = s3_client.generate_presigned_post(Bucket=bucket_name,
                                                      Key=object_name,
