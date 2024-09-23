@@ -5,6 +5,7 @@ resource "aws_lambda_function" "lambda_signed_url" {
   role             = aws_iam_role.lambda_signed_url_function.arn
   runtime          = "python3.11"
   source_code_hash = filebase64sha256("./scripts/presigned_url.zip")
+  memory_size      = 256
 }
 
 resource "aws_lambda_function_url" "signed_url" {
